@@ -31,8 +31,8 @@ public class Principal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         escritorio = new javax.swing.JPanel();
         bienvenida = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        bienvenida2 = new javax.swing.JLabel();
+        btReserva = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmAdministrador = new javax.swing.JMenu();
         jmCrearHabitacion = new javax.swing.JMenuItem();
@@ -43,26 +43,29 @@ public class Principal extends javax.swing.JFrame {
         jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBounds(new java.awt.Rectangle(400, 200, 200, 200));
 
         escritorio.setBackground(new java.awt.Color(0, 0, 0));
 
         bienvenida.setBackground(new java.awt.Color(255, 255, 255));
-        bienvenida.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        bienvenida.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 36)); // NOI18N
         bienvenida.setForeground(new java.awt.Color(255, 255, 51));
-        bienvenida.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        bienvenida.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         bienvenida.setText("¡ Bienvenido a  Gran Hotel !");
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel2.setText("Su consulta no molesta.");
+        bienvenida2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bienvenida2.setForeground(new java.awt.Color(255, 255, 102));
+        bienvenida2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        bienvenida2.setText("Su consulta no molesta.");
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 153));
-        jButton1.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("¡Haga su reserva!");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btReserva.setBackground(new java.awt.Color(255, 255, 153));
+        btReserva.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        btReserva.setText("¡Haga su reserva!");
+        btReserva.setAlignmentX(0.5F);
+        btReserva.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btReservaActionPerformed(evt);
             }
         });
 
@@ -70,16 +73,13 @@ public class Principal extends javax.swing.JFrame {
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(escritorioLayout.createSequentialGroup()
-                .addContainerGap(80, Short.MAX_VALUE)
-                .addComponent(bienvenida, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btReserva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bienvenida2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bienvenida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(54, 54, 54))
-            .addGroup(escritorioLayout.createSequentialGroup()
-                .addGap(140, 140, 140)
-                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,11 +87,13 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(57, 57, 57)
                 .addComponent(bienvenida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(56, 56, 56)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addComponent(bienvenida2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(61, 61, 61)
+                .addComponent(btReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(82, 82, 82))
         );
+
+        bienvenida2.getAccessibleContext().setAccessibleParent(bienvenida);
 
         jmAdministrador.setText("Administrador");
 
@@ -136,17 +138,16 @@ public class Principal extends javax.swing.JFrame {
 
     private void jmCrearHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCrearHabitacionActionPerformed
         // TODO add your handling code here:
-          escritorio.removeAll();
-        escritorio.repaint();
-          CrearHabitaciones ch=new CrearHabitaciones();
+     
+          VistaAdministrador ch=new VistaAdministrador();
           ch.setVisible(true);
         escritorio.add(ch);
        
     }//GEN-LAST:event_jmCrearHabitacionActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btReservaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btReservaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,9 +186,9 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bienvenida;
+    private javax.swing.JLabel bienvenida2;
+    private javax.swing.JButton btReserva;
     private javax.swing.JPanel escritorio;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jmAdministrador;
