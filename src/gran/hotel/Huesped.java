@@ -5,7 +5,6 @@
  */
 package gran.hotel;
 
-import java.time.LocalDate;
 
 /**
  *
@@ -13,11 +12,12 @@ import java.time.LocalDate;
  */
 public class Huesped {
     //ATRIBUTOS
+    private int id_huesped= -1;
     private String  dni;
     private String nombre;
     private String domicilio;
     private String correo;
-    private String celular;
+    private String telefono;
     
   /*  //METODOS
         public void CrearReserva(LocalDate inicio, LocalDate salida, int personas){
@@ -44,17 +44,39 @@ public class Huesped {
 
 */
 //CONSTRUCTOR
-    public Huesped(String dni, String nombre, String domicilio, String correo, String celular) {
+    public Huesped(int id,String nombre, String dni, String domicilio, String correo, String telefono) {
+        this.id_huesped = id;
         this.dni = dni;
         this.nombre = nombre;
         this.domicilio = domicilio;
         this.correo = correo;
-        this.celular = celular;
-    }
-
-    public Huesped() {
+        this.telefono = telefono;
     }
     
+     public Huesped() {
+        this.id_huesped= -1;
+    }
+
+    public Huesped(String nombre, String dni, String domicilio, String correo, String telefono) {
+        this.id_huesped=-1;
+        this.dni = dni;
+        this.nombre = nombre;
+        this.domicilio = domicilio;
+        this.correo = correo;
+        this.telefono = telefono;
+    }
+     
+    
+
+    public int getId_huesped() {
+        return id_huesped;
+    }
+
+    public void setId_huesped(int id_huesped) {
+        this.id_huesped = id_huesped;
+    }
+
+   
     
     
 //GETTERS Y SETTERS
@@ -90,12 +112,12 @@ public class Huesped {
         this.correo = correo;
     }
 
-    public String getCelular() {
-        return celular;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setCelular(String celular) {
-        this.celular = celular;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     

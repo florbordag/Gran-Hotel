@@ -16,25 +16,29 @@ import java.text.ParseException;
 public class GranHotel {
   public static void main(String[] arg) throws ParseException {
        Conexion conexion; 
+       
        /* String url= "jdbc:mysql://localhost/granhotel";
         String usuario= "root";
         String password= ""; 
         
        
         PreparedStatement ps; */
+       //-----------------------------------------------------------------------------------------
         
-    /*    try { //CREAR HUESPED Y DEVOLVER DNI
-            conexion = new Conexion("jdbc:mysql://localhost/granhotel", "root", "");
+     /*   try { //CREAR HUESPED Y DEVOLVER DNI
+            conexion = new Conexion("jdbc:mysql://localhost/elgranhotel", "root", "");
             HuespedData huespedData = new HuespedData(conexion);
      
-              Huesped huesped1 = new Huesped("35451936", "Florencia", "Barrio 142 viv.", "florbordag@gmail.com", "2664258284");
+              Huesped huesped1 = new Huesped("Florencia", "35451936", "Barrio 142 viv.", "florbordag@gmail.com", "2664258284");
               huespedData.registrarHuesped(huesped1);
               System.out.println("DNI: " + huesped1.getDni());
                     } catch (Exception e) {
             System.out.println("Error al instanciar la clase conexion: " + e.getMessage());
-        }*/
+        } */
+     
+     //------------------------------------------------------------------------------------
     
-         try { //CONSULTAR COLUMNAS
+      /*   try { //CONSULTAR COLUMNAS
             conexion = new Conexion("jdbc:mysql://localhost/granhotel", "root", "");
             HuespedData huespedData = new HuespedData(conexion);
           
@@ -45,13 +49,10 @@ public class GranHotel {
     
                     } catch (Exception e) {
             System.out.println("Error al instanciar la clase conexion: " + e.getMessage());
-        }
-   
+        } */
+   //---------------------------------------------------------------------------------------------------
         
-    }
-    
-}
-            //TEST
+         //TEST
             /*Class.forName("org.mariadb.jdbc.Driver");
             conexion = DriverManager.getConnection(url, usuario, password);*/
             
@@ -92,3 +93,5 @@ public class GranHotel {
     }
     
 } */
+
+  }}

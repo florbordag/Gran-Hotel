@@ -28,19 +28,19 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenu1 = new javax.swing.JMenu();
         escritorio = new javax.swing.JPanel();
         bienvenida = new javax.swing.JLabel();
         bienvenida2 = new javax.swing.JLabel();
         btReserva = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jmAdministrador = new javax.swing.JMenu();
         jmCrearHabitacion = new javax.swing.JMenuItem();
         jmBuscarHabitacion = new javax.swing.JMenuItem();
         jmHuesped = new javax.swing.JMenu();
         jmReservar = new javax.swing.JMenuItem();
-
-        jMenu1.setText("jMenu1");
+        jmRegistrese = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(400, 200, 200, 200));
@@ -95,6 +95,19 @@ public class Principal extends javax.swing.JFrame {
 
         bienvenida2.getAccessibleContext().setAccessibleParent(bienvenida);
 
+        jMenu2.setText("Archivo");
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setText("Salir");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu2);
+
         jmAdministrador.setText("Administrador");
 
         jmCrearHabitacion.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
@@ -117,6 +130,15 @@ public class Principal extends javax.swing.JFrame {
         jmReservar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         jmReservar.setText("Reservar");
         jmHuesped.add(jmReservar);
+
+        jmRegistrese.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.SHIFT_MASK));
+        jmRegistrese.setText("Registrese");
+        jmRegistrese.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmRegistreseActionPerformed(evt);
+            }
+        });
+        jmHuesped.add(jmRegistrese);
 
         jMenuBar1.add(jmHuesped);
 
@@ -148,6 +170,22 @@ public class Principal extends javax.swing.JFrame {
     private void btReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btReservaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btReservaActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jmRegistreseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmRegistreseActionPerformed
+        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        RegistroHuesped rh = new RegistroHuesped();
+        rh.setVisible(true);
+        escritorio.add(rh);
+        
+    
+    }//GEN-LAST:event_jmRegistreseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,12 +227,14 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel bienvenida2;
     private javax.swing.JButton btReserva;
     private javax.swing.JPanel escritorio;
-    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu jmAdministrador;
     private javax.swing.JMenuItem jmBuscarHabitacion;
     private javax.swing.JMenuItem jmCrearHabitacion;
     private javax.swing.JMenu jmHuesped;
+    private javax.swing.JMenuItem jmRegistrese;
     private javax.swing.JMenuItem jmReservar;
     // End of variables declaration//GEN-END:variables
 }
