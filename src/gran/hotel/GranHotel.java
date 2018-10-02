@@ -33,7 +33,7 @@ public class GranHotel {
               huespedData.registrarHuesped(huesped1);
               System.out.println("DNI: " + huesped1.getDni());
                     } catch (Exception e) {
-            System.out.println("Error al instanciar la clase conexion: " + e.getMessage());
+            System.out.println("Error al instanciar la clase conexion crear huesped: " + e.getMessage());
         } */
      
      //------------------------------------------------------------------------------------
@@ -48,7 +48,7 @@ public class GranHotel {
             });
     
                     } catch (Exception e) {
-            System.out.println("Error al instanciar la clase conexion: " + e.getMessage());
+            System.out.println("Error al instanciar la clase conexion obtener huesped: " + e.getMessage());
         } */
    //---------------------------------------------------------------------------------------------------
         

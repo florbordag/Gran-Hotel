@@ -25,7 +25,7 @@ public class HuespedData {
         try {
             connection = conexion.getConexion();
         } catch (SQLException ex) {
-            System.out.println("Error al abrir al obtener la conexion");
+            System.out.println("Error al abrir al obtener la conexion HuespedData");
         }
     }
     
@@ -81,7 +81,7 @@ public class HuespedData {
                 statment.close();
             }
         } catch (SQLException ex) {
-            System.out.println("Error al obtener los alumnos: " + ex.getMessage());
+            System.out.println("Error al obtener los huespedes: " + ex.getMessage());
         }
         
         
