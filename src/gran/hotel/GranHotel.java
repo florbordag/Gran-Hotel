@@ -1,7 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+PROYECTO GRAN HOTEL, COMISION 1, GRUPO 4 
+BORDAGORRY MARIA FLORENCIA,   BUNINO YAMILE NAIR,      BUSTOS DANIEL ALEJANDRO,  BERTERO RODOLFO.
+                                  << CLASE CONEXION >>
+                                << CLASE HUESPED DATA >>
+                            <<< ABM DE LA CLASE HUESPED >>> 
+                        (Las demás clases estan en construcción)
  */
 package gran.hotel;
 import java.sql.PreparedStatement;
@@ -20,78 +23,59 @@ public class GranHotel {
        /* String url= "jdbc:mysql://localhost/granhotel";
         String usuario= "root";
         String password= ""; 
-        
-       
-        PreparedStatement ps; */
-       //-----------------------------------------------------------------------------------------
-        
-     /*   try { //CREAR HUESPED Y DEVOLVER DNI
+        */
+                        //LOS SIQUIENTES METODOS SON A MODO DE EJEMPLO
+//-----------------------------------------------------------------------------------------------
+      /*  
+        try {             //<<< CREAR HUESPED >>>
             conexion = new Conexion("jdbc:mysql://localhost/elgranhotel", "root", "");
             HuespedData huespedData = new HuespedData(conexion);
      
-              Huesped huesped1 = new Huesped("Florencia", "35451936", "Barrio 142 viv.", "florbordag@gmail.com", "2664258284");
+              Huesped huesped1 = new Huesped("Florinda Mesa", "30123456", "Barrio La Vecindad", "florindam@gmail.com", "0303456");
               huespedData.registrarHuesped(huesped1);
-              System.out.println("DNI: " + huesped1.getDni());
+                    //<< DEVOLVER DATOS SI SE REQUIERE >>
+              System.out.println("El huesped a sido creado con éxito =)");
                     } catch (Exception e) {
             System.out.println("Error al instanciar la clase conexion crear huesped: " + e.getMessage());
         } */
      
-     //------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------
     
-      /*   try { //CONSULTAR COLUMNAS
-            conexion = new Conexion("jdbc:mysql://localhost/granhotel", "root", "");
+       /*  try { //             << CONSULTAR COLUMNAS >>
+            conexion = new Conexion("jdbc:mysql://localhost/elgranhotel", "root", "");
             HuespedData huespedData = new HuespedData(conexion);
           
             
             huespedData.obtenerHuespedes().forEach(huesped -> {
-                System.out.println("Nombre: " + huesped.getNombre());
+                System.out.println("Huespes nro: "+ huesped.getId_huesped() +" Nombre: " + huesped.getNombre() + " Dni: " + huesped.getDni() + " Correo: "+ huesped.getCorreo() + " Telefono: "+ huesped.getTelefono());
             });
     
                     } catch (Exception e) {
             System.out.println("Error al instanciar la clase conexion obtener huesped: " + e.getMessage());
-        } */
-   //---------------------------------------------------------------------------------------------------
-        
-         //TEST
-            /*Class.forName("org.mariadb.jdbc.Driver");
-            conexion = DriverManager.getConnection(url, usuario, password);*/
-            
-            //CREATE
-           /*
-            ps= conexion.prepareStatement("INSERT INTO alumno;");
-            
-            ps.setString(1, "Rosales Esteban");
-            LocalDate fechalocal=LocalDate.of(1995, 10, 15);
-            Date fecha= Date.valueOf(fechalocal);
-            
-            ps.setDate(2, fecha);
-            ps.setBoolean(3, true);
-            ps.executeUpdate();
-            ps.close(); 
-                    */
- 
-            
-            //UPDATE
-            /*
-            ps= conexion.prepareStatement("UPDATE habitacion SET ocupado =1;");
-            ps.executeUpdate();
-            ps.close();
-            */
-           
-           //DELETE
-          /* ps= conexion.prepareStatement("DELETE FROM alumno WHERE id=?;");
-           ps.setInt (1, 7);
-           ps.executeUpdate();
-           ps.close(); */
-          
-            
-      /*  } catch (ClassNotFoundException ex) {
-            Logger.getLogger(GranHotel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(GranHotel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-} */
+        } 
+         */
+//---------------------------------------------------------------------------------------------------
+   
+   /*   try {             //<<< BORRAR HUESPED por ID >>>
+            conexion = new Conexion("jdbc:mysql://localhost/elgranhotel", "root", "");
+            HuespedData huespedData = new HuespedData(conexion);
 
+      huespedData.borrarHuesped(1);
+                    } catch (Exception e) {
+            System.out.println("Error al instanciar la clase conexion crear huesped: " + e.getMessage());
+        } 
+   */
+//-----------------------------------------------------------------------------------------------------
+    /*       
+                 try {             //<<< MODIFICAR HUESPED por ID >>>
+            conexion = new Conexion("jdbc:mysql://localhost/elgranhotel", "root", "");
+            HuespedData huespedData = new HuespedData(conexion);
+            //Modificamos el huesped por el id, cambiando el resto de los datos
+
+            Huesped huesped = new Huesped(1,"Ramona Carranza", "dniAmodificar", "barrioModificado", "correonuevo", "Telefononuevo");
+            huespedData.actualizarHuesped(huesped);
+                    } catch (Exception e) {
+            System.out.println("Error al instanciar la clase conexion crear huesped: " + e.getMessage());
+        } 
+*/
   }}
