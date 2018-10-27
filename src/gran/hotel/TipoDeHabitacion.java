@@ -17,6 +17,9 @@ public class TipoDeHabitacion {
     private String tipo_cama;
     private double precio_noche;
 
+    public TipoDeHabitacion() {
+    }
+
     public TipoDeHabitacion(int id_tipoHabitacion, String tipo, int capacidad, int cantidad_camas, String tipo_cama, double precio_noche) {
         this.id_tipoHabitacion = id_tipoHabitacion;
         this.tipo = tipo;
@@ -25,10 +28,6 @@ public class TipoDeHabitacion {
         this.tipo_cama = tipo_cama;
         this.precio_noche = precio_noche;
     }
-
-    public TipoDeHabitacion() {
-    }
-    
 
     public int getId_tipoHabitacion() {
         return id_tipoHabitacion;
@@ -77,5 +76,6 @@ public class TipoDeHabitacion {
     public void setPrecio_noche(double precio_noche) {
         this.precio_noche = precio_noche;
     }
-
+    
+    
 }

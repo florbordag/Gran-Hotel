@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package gran.hotel;
 
 /**
@@ -10,38 +6,20 @@ package gran.hotel;
  * @author Flor
  */
 public class Habitacion {
-   private int id_habitacion = -1;
-   private int id_tipoHabitacion;
-   private int numero;
-   private int piso;
-   private boolean disponible;
+    private int id_habitacion;
+    private int id_tipoHabitacion;
+    private int numero;
+    private int piso;
+    private int disponible = 1; //un 1 significa habitacion disponible y un 0 ocupada
 
-    public Habitacion(int id_habitacion,int id_tipoHabitacion, int numero, int piso, boolean disponible) {
-        this.id_habitacion= id_habitacion;
+    public Habitacion(int id_habitacion, int id_tipoHabitacion, int numero, int piso) {
+        this.id_habitacion = id_habitacion;
         this.id_tipoHabitacion = id_tipoHabitacion;
         this.numero = numero;
         this.piso = piso;
-        this.disponible = disponible;
-    }
-
-    public Habitacion(int id_tipoHabitacion, int numero, int piso, boolean disponible) {
-        this.id_habitacion =-1;
-        this.id_tipoHabitacion = id_tipoHabitacion;
-        this.numero = numero;
-        this.piso = piso;
-        this.disponible=disponible;
-    }
-
-    public Habitacion(int id_tipoHabitacion, int numero, int piso) {
-        this.id_habitacion= -1;
-        this.id_tipoHabitacion = id_tipoHabitacion;
-        this.numero = numero;
-        this.piso = piso;
-        this.disponible = true;
     }
 
     public Habitacion() {
-        this.id_habitacion= -1;
     }
 
     public int getId_habitacion() {
@@ -76,10 +54,15 @@ public class Habitacion {
         this.piso = piso;
     }
 
-    public boolean isDisponible() {
+    public int getDisponible() {
         return disponible;
     }
 
-    public void setDisponible(boolean disponible) {
+    public void setDisponible(int disponible) {
         this.disponible = disponible;
-    }}
+    }
+    
+    
+    
+    
+}

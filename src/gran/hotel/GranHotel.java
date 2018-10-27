@@ -9,6 +9,9 @@ BORDAGORRY MARIA FLORENCIA,   BUNINO YAMILE NAIR,      BUSTOS DANIEL ALEJANDRO, 
 package gran.hotel;
 import java.sql.PreparedStatement;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 
 
@@ -17,9 +20,17 @@ import java.text.ParseException;
  * @author Flor
  */
 public class GranHotel {
+    
   public static void main(String[] arg) throws ParseException {
+   
        Conexion conexion; 
+      /* Reserva reserva = new Reserva("10/10/2018","12/10/2018");
+       double days=reserva.dias("10/10/2018","12/10/2018");
+       int day=(int) days;
+    
        
+       System.out.println("Se queda "+day+" dias");
+       System.out.println(reserva.getFecha_entrada());*/
        /* String url= "jdbc:mysql://localhost/granhotel";
         String usuario= "root";
         String password= ""; 

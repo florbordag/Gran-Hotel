@@ -1,169 +1,141 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package gran.hotel;
 
+import gran.hotel.Huesped;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author alejo
- */
 public class HuespedData {
-    private Connection connection=null;
-    
+    private int id_huesped;
+
+    String sql = "";
+    private Connection con = null;
+    public Integer totalregistros;
 
     public HuespedData(Conexion conexion) {
         try {
-            connection = conexion.getConexion();
-        } catch (SQLException ex) {
-            System.out.println("Error al abrir al obtener la conexion HuespedData");
+            con = conexion.getConexion();
+        } catch (SQLException e) {
         }
     }
-    
-    
-    public void registrarHuesped(Huesped huesped){
-        try {
-            
-            String sql = "INSERT INTO huesped (nombre, dni, domicilio, correo, telefono) VALUES ( ? , ? , ? , ? , ? );";
 
-            try (PreparedStatement statment = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                statment.setString(1, huesped.getNombre());
-                statment.setString(2, huesped.getDni());
-                statment.setString(3, huesped.getDomicilio());
-                statment.setString(4, huesped.getCorreo());
-                statment.setString(5, huesped.getTelefono());
-                
-                statment.executeUpdate();
-                
-              ResultSet rs = statment.getGeneratedKeys();
-                
-                if (rs.next()) {
-                    huesped.setId_huesped(rs.getInt(1));
-                } else {
-                    System.out.println("No se pudo obtener el id luego de insertar un huesped");
-                } 
-                statment.close();
+    public int registrarHuesped(Huesped huesped) {
+        
+        sql = "INSERT INTO huesped (nombre, apellido, dni, domicilio, correo, telefono) VALUES ( ? , ? , ? , ? , ? , ?)";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+            ps.setString(1, huesped.getNombre());
+            ps.setString(2, huesped.getApellido());
+            ps.setString(3, huesped.getDni());
+            ps.setString(4, huesped.getDomicilio());
+            ps.setString(5, huesped.getCorreo());
+            ps.setString(6, huesped.getTelefono());
+
+            ps.executeUpdate();
+            //A continuacion obtengo el ID asignado al huesped:
+            ResultSet rs = ps.getGeneratedKeys();
+            
+            while(rs.next()){
+                id_huesped = rs.getInt(1);
             }
-    
-        } catch (SQLException ex) {
-            System.out.println("Error al insertar un huesped: " + ex.getMessage());
+
+            JOptionPane.showConfirmDialog(null, "Registro Exitoso!!");
+
+        } catch (Exception e) {
+            System.out.println(e);
+            return id_huesped;
+        }
+        return id_huesped;
+    }
+
+    public void editarHuesped(Huesped huesped) {
+        sql = "UPDATE huesped SET nombre = ? , apellido = ? , dni = ? , domicilio = ? , correo = ? , telefono = ? WHERE id_huesped = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, huesped.getNombre());
+            ps.setString(2, huesped.getApellido());
+            ps.setString(3, huesped.getDni());
+            ps.setString(4, huesped.getDomicilio());
+            ps.setString(5, huesped.getCorreo());
+            ps.setString(6, huesped.getTelefono());
+
+            ps.setInt(7, huesped.getId_huesped());
+
+            ps.executeUpdate();
+
+        } catch (Exception e) {
         }
     }
-    
-    public List<Huesped> obtenerHuespedes(){
-        List<Huesped> huespedes = new ArrayList<>();
-            
+
+    public void eliminarHuesped(Huesped huesped) {
+        sql = "DELETE FROM huesped WHERE id_huesped = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, huesped.getId_huesped());
+
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+        }
+    }
+
+    public Huesped buscarHuesped(String loginapellido, String logindni) {
+        Huesped hues = new Huesped(); //Instancio un objeto tipo Huesped para almacenar los datos leidos
+        sql = "SELECT * FROM huesped WHERE apellido = '" + loginapellido + "' AND dni = '" + logindni + "' ";
 
         try {
-            String sql = "SELECT * FROM huesped;";
-            try (PreparedStatement statment = connection.prepareStatement(sql)) {
-                ResultSet resultSet = statment.executeQuery();
-                Huesped huesped;
-                while(resultSet.next()){
-                    huesped = new Huesped();
-                    huesped.setId_huesped(resultSet.getInt("id_huesped"));
-                    huesped.setNombre(resultSet.getString("nombre"));
-                    huesped.setDni(resultSet.getString("dni"));
-                    huesped.setDomicilio(resultSet.getString("domicilio"));
-                    huesped.setCorreo(resultSet.getString("correo"));
-                    huesped.setTelefono(resultSet.getString("telefono"));
-                    huespedes.add(huesped);
-                }
-                statment.close();
+
+            Statement ps = con.createStatement();
+            ResultSet rs = ps.executeQuery(sql);
+            
+            //Si existe este huesped, entonces se ingresara al siguiente WHILE:
+            while (rs.next()) {
+                hues.setId_huesped(rs.getInt("id_huesped"));
+                hues.setNombre(rs.getString("nombre"));
+                hues.setApellido(rs.getString("apellido"));
+                hues.setDni(rs.getString("dni"));
+                hues.setDomicilio(rs.getString("domicilio"));
+                hues.setCorreo(rs.getString("correo"));
+                hues.setTelefono(rs.getString("telefono"));
+
+                //System.out.println(hues.getId_huesped() + hues.getApellido() + hues.getNombre() + hues.getDni());
             }
-        } catch (SQLException ex) {
-            System.out.println("Error al obtener los huespedes: " + ex.getMessage());
+        } catch (Exception e) {
         }
-        
-        
-        return huespedes;
+        return hues;
     }
-     public void borrarHuesped(int id_huesped){
-    try {
-            
-            String sql = "DELETE FROM huesped WHERE id_huesped =?;";
+    
+    
+    public Huesped buscarHuesped(int id_huesped) {
+        Huesped hues = new Huesped(); //Instancio un objeto tipo Huesped para almacenar los datos leidos
+        sql = "SELECT * FROM huesped WHERE id_huesped =" + id_huesped;
 
-            PreparedStatement statment = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statment.setInt(1, id_huesped);
-           
-            
-            statment.executeUpdate();
-            
-            
-            statment.close();
-    
-        } catch (SQLException ex) {
-            System.out.println("Error al borrar un huesped: " + ex.getMessage());
-        }
-        
-    
-    }
-     public void actualizarHuesped(Huesped huesped){
-    
         try {
-            
-            String sql = "UPDATE huesped SET nombre = ?, dni = ? , domicilio =?, correo = ?, telefono = ?  WHERE id_huesped = ?;";
 
-            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setString(1, huesped.getNombre());
-            statement.setString(2, huesped.getDni());
-            statement.setString(3, huesped.getDomicilio());
-            statement.setString(4, huesped.getCorreo());
-            statement.setString(5, huesped.getTelefono());
-            statement.setInt(6, huesped.getId_huesped());
-            statement.executeUpdate();
+            Statement ps = con.createStatement();
+            ResultSet rs = ps.executeQuery(sql);
             
-          
-            statement.close();
-    
-        } catch (SQLException ex) {
-            System.out.println("Error al actualizar un huesped: " + ex.getMessage());
+            //Si existe este huesped, entonces se ingresara al siguiente WHILE:
+            while (rs.next()) {
+                hues.setId_huesped(rs.getInt("id_huesped"));
+                hues.setNombre(rs.getString("nombre"));
+                hues.setApellido(rs.getString("apellido"));
+                hues.setDni(rs.getString("dni"));
+                hues.setDomicilio(rs.getString("domicilio"));
+                hues.setCorreo(rs.getString("correo"));
+                hues.setTelefono(rs.getString("telefono"));
+
+                //System.out.println(hues.getId_huesped() + hues.getApellido() + hues.getNombre() + hues.getDni());
+            }
+        } catch (Exception e) {
         }
-    
+        return hues;
     }
-     public Huesped buscarHuesped(int id_huesped){
-    Huesped huesped=null;
-    try {
-            
-            String sql = "SELECT * FROM huesped WHERE id_huesped =?;";
-
-            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setInt(1, id_huesped);
-           
-            
-            ResultSet resultSet=statement.executeQuery();
-            
-            while(resultSet.next()){
-                huesped = new Huesped();
-                huesped.setId_huesped(resultSet.getInt("id_huesped"));
-                huesped.setNombre(resultSet.getString("nombre"));
-                huesped.setDni(resultSet.getString("dni"));
-                huesped.setDomicilio(resultSet.getString("domicilio"));
-                huesped.setCorreo(resultSet.getString("correo"));
-                huesped.setTelefono(resultSet.getString("telefono"));
-
-                
-            }      
-            statement.close();
-            
-            
-            
-            
     
-        } catch (SQLException ex) {
-            System.out.println("Error al buscar un huesped: " + ex.getMessage());
-        }
-        
-        return huesped;
-    }
+    
 }
-
